@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDTO } from './dto/user.dto';
 import { ApiTags } from '@nestjs/swagger';
@@ -7,6 +7,11 @@ import { ApiTags } from '@nestjs/swagger';
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @Get()
+  getHello(): string {
+    return process.env.NODE_ENV;
+  }
 
   @Post()
   async create(@Body() data: UserDTO) {
